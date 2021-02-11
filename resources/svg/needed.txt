@@ -1,1 +1,1 @@
-This is needed here so the blade-icons will work.
+This is needed here so that the blade-icons will work.
