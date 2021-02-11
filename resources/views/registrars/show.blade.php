@@ -57,7 +57,7 @@
                 <div class="flex justify-between">
                     <livewire:search-bar/>
                     <div class="float-right">
-                        <a href="{{ route('item-infos.create') }}"
+                        <a href="{{ route('domains.create') }}"
                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Add
                             Domain</a>
                     </div>
@@ -75,26 +75,30 @@
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Location
+                                            TLD
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Purchase Date
+                                            Registrar
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Expiration Date
+                                            Registered Date
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Price
+                                            Yearly Cost
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            SKU
+                                            Auto-renews?
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            SSL Certificate?
                                         </th>
                                         <th scope="col" class="relative px-6 py-3">
-                                            <span class="sr-only">Edit</span>
+                                            <span class="sr-only">View</span>
                                         </th>
                                     </tr>
                                     </thead>

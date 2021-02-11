@@ -47,7 +47,7 @@
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
-{{--                                        {{ Auth::user()->items->count() }}--}}
+                                        {{ Auth::user()->domains->count() }}
                                     </div>
                                 </dd>
                             </dl>
@@ -76,7 +76,7 @@
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
-{{--                                        {{ Auth::user()->locations->count() }}--}}
+{{--                                        {{ Auth::user()->registrars->count() }}--}}
                                     </div>
                                 </dd>
                             </dl>
