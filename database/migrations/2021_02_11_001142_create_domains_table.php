@@ -18,6 +18,11 @@ class CreateDomainsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->unsignedBigInteger('top_level_domain_id');
+            $table->unsignedBigInteger('registrar_id');
+            $table->date('registered_date');
+            $table->integer('yearly_cost');
+            $table->boolean('will_autorenew')->default(true);
+            $table->boolean('has_ssl_certificate')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -27,6 +32,10 @@ class CreateDomainsTable extends Migration
             $table->foreign('top_level_domain_id')
                 ->references('id')
                 ->on('top_level_domains');
+
+            $table->foreign('registrar_id')
+                ->references('id')
+                ->on('registrars');
         });
     }
 
