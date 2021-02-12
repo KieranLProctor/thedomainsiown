@@ -23,7 +23,7 @@
                                 <x-jet-label for="top_level_domain_id" value="{{ __('TLD') }}"/>
                                 <select id="top_level_domain_id" name="top_level_domain_id"
                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                    <option value="" selected>Select TLD</option>
+                                    <option value="" selected>Select...</option>
                                     @foreach($tlds as $tld)
                                         <option value="{{ $tld->id }}">{{ $tld->name }}</option>
                                     @endforeach
@@ -36,7 +36,7 @@
                                 <x-jet-label for="registrar_id" value="{{ __('Registrar') }}"/>
                                 <select id="registrar_id" name="registrar_id"
                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                    <option value="" selected>Select Registrar</option>
+                                    <option value="" selected>Select...</option>
                                     @foreach($registrars as $registrar)
                                         <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
                                     @endforeach
@@ -47,9 +47,8 @@
                             <!-- Registered Date -->
                             <div class="col-span-3 sm:col-span-2">
                                 <x-jet-label for="registered_date" value="{{ __('Registered Date') }}"/>
-                                <input id="registered_date" name="registered_date"
-                                       class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                                       type="date">
+                                <x-pikaday name="registered_date"
+                                           class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"/>
                                 <x-jet-input-error for="registered_date" class="mt-2"/>
                             </div>
 
@@ -77,7 +76,7 @@
                             <!-- Auto Renews -->
                             <div class="col-span-3 sm:col-span-2">
                                 <label for="will_autorenew" class="flex items-center">
-                                    <x-jet-checkbox id="will_autorenew" name="will_autorenew" />
+                                    <x-jet-checkbox id="will_autorenew" name="will_autorenew"/>
                                     <span class="ml-2 text-sm text-gray-600">{{ __('Auto-renews?') }}</span>
                                 </label>
                             </div>
@@ -85,7 +84,7 @@
                             <!-- SSL Certificate -->
                             <div class="col-span-3 sm:col-span-2">
                                 <label for="has_ssl_certificate" class="flex items-center">
-                                    <x-jet-checkbox id="has_ssl_certificate" name="has_ssl_certificate" />
+                                    <x-jet-checkbox id="has_ssl_certificate" name="has_ssl_certificate"/>
                                     <span class="ml-2 text-sm text-gray-600">{{ __('SSL Certificate?') }}</span>
                                 </label>
                             </div>
