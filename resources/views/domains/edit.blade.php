@@ -1,6 +1,6 @@
 <x-app-layout>
     <div>
-        <div class="mt-5 md:mt-0 w-1/2">
+        <div class="mt-5 md:mt-0 w-full lg:w-1/2">
             <form action="{{ route('domains.update', $domain) }}" method="POST">
                 @csrf
                 @method('PATCH')
