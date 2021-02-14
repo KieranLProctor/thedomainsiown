@@ -66,7 +66,7 @@ class DomainController extends Controller
             'has_ssl_certificate' => $request->has('has_ssl_certificate'),
         ]);
 
-        return redirect()->route('domains.index');
+        return redirect()->route('domains.index')->with('message', 'test');
     }
 
     /**
