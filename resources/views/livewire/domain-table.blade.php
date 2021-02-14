@@ -30,8 +30,9 @@
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 SSL Certificate?
             </th>
-            <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">View</span>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <span class="sr-only">Actions</span>
+                Actions
             </th>
         </tr>
         </thead>
@@ -89,11 +90,28 @@
                                 {{ $domain->has_ssl_certificate ? 'Yes' : 'No' }}
                          </span>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex flex-row gap-2 items-center">
                         <a href="{{ route('domains.show', $domain) }}"
                            class="text-gray-600 hover:text-gray-900">
-                            View
+                            <span class="sr-only">View</span>
+                            <x-heroicon-o-eye class="h-5 w-5"/>
                         </a>
+
+                        <a href="{{ route('domains.edit', $domain) }}"
+                           class="text-gray-600 hover:text-gray-900">
+                            <span class="sr-only">Edit</span>
+                            <x-heroicon-o-pencil-alt class="h-5 w-5"/>
+                        </a>
+
+                        <form method="POST" action="{{ route('domains.destroy', $domain) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Are you sure?');"
+                                    class="text-gray-600 hover:text-red-600">
+                                <span class="sr-only">Delete</span>
+                                <x-heroicon-o-trash class="h-5 w-5"/>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

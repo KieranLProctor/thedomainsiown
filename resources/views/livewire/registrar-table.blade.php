@@ -10,8 +10,9 @@
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Email
             </th>
-            <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">View</span>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <span class="sr-only">Actions</span>
+                Actions
             </th>
         </tr>
         </thead>
@@ -37,10 +38,10 @@
                             {{ $registrar->email }}
                         </div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex flex-row gap-2 items-center">
                         <a href="{{ route('registrars.show', $registrar) }}"
                            class="text-gray-600 hover:text-gray-900">
-                            View
+                            <x-heroicon-o-eye class="h-5 w-5"/>
                         </a>
                     </td>
                 </tr>
