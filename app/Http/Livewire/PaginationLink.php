@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class RegistrarTableData extends Component
+class PaginationLink extends Component
 {
     public function render()
     {
-        return view('livewire.registrar-table-data');
+        return view('livewire.pagination-link');
     }
 }
