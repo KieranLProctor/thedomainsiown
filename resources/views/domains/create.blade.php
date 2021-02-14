@@ -48,7 +48,8 @@
                             <div class="col-span-3 sm:col-span-2">
                                 <x-jet-label for="registered_date" value="{{ __('Registered Date') }}"/>
                                 <x-pikaday name="registered_date"
-                                           class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"/>
+                                           class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                                           format="YYYY-MM-DD"/>
                                 <x-jet-input-error for="registered_date" class="mt-2"/>
                             </div>
 
