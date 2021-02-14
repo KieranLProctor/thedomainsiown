@@ -45,8 +45,8 @@
                     </td>
                 </tr>
             @endforeach
-            {{ $registrars->links('livewire.pagination-link') }}
         @endif
+        {{ $registrars->links('livewire.pagination-link') }}
         </tbody>
     </table>
 </div>
