@@ -21,12 +21,8 @@ class CreateRegistrarsTable extends Migration
             $table->integer('iana_id');
             $table->integer('raa');
             $table->string('phone');
-            $table->unsignedBigInteger('country_id');
+            $table->foreignId('country_id')->constrained();
             $table->timestamps();
-
-            $table->foreign('country_id')
-                ->references('id')
-                ->on('countries');
         });
     }
 

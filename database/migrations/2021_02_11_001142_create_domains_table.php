@@ -16,26 +16,15 @@ class CreateDomainsTable extends Migration
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->string('name');
-            $table->unsignedBigInteger('top_level_domain_id');
-            $table->unsignedBigInteger('registrar_id');
+            $table->foreignId('top_level_domain_id')->constrained();
+            $table->foreignId('registrar_id')->constrained();
             $table->date('registered_date');
             $table->integer('yearly_cost');
             $table->boolean('will_autorenew')->default(true);
             $table->boolean('has_ssl_certificate')->default(false);
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
-
-            $table->foreign('top_level_domain_id')
-                ->references('id')
-                ->on('top_level_domains');
-
-            $table->foreign('registrar_id')
-                ->references('id')
-                ->on('registrars');
         });
     }
 
