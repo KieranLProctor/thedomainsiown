@@ -53,7 +53,7 @@
                             x-show="sidebarOpen"
                             @click="sidebarOpen = false"
                             class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                        <span class="sr-only">Close sidebar</span>
+                        <span class="sr-only">{{ __('Close sidebar') }}</span>
                         <x-heroicon-o-x class="h-6 w-6 text-white"/>
                     </button>
                 </div>
@@ -136,13 +136,13 @@
             <button
                 @click.stop="sidebarOpen = true"
                 class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden">
-                <span class="sr-only">Open sidebar</span>
+                <span class="sr-only">{{ __('Open sidebar') }}</span>
                 <x-heroicon-o-menu-alt-2 class="h-6 w-6"/>
             </button>
             <div class="flex-1 px-4 flex justify-between">
                 <div class="flex-1 flex">
                     <form class="w-full flex md:ml-0" action="#" method="GET">
-                        <label for="search_field" class="sr-only">Search</label>
+                        <label for="search_field" class="sr-only">{{ __('Search') }}</label>
                         <div class="relative w-full text-gray-400 focus-within:text-gray-600">
                             <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                                 <x-heroicon-o-search class="h-5 w-5"/>
@@ -160,7 +160,7 @@
                             <x-slot name="trigger">
                                 <button
                                     class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    <span class="sr-only">View notifications</span>
+                                    <span class="sr-only">{{ __('View notifications') }}</span>
                                     <x-heroicon-o-bell class="h-6 w-6"/>
                                 </button>
                             </x-slot>

@@ -14,7 +14,7 @@
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">
-                                    Monthly Expenditure
+                                    {{ __('Monthly Expenditure') }}
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
@@ -28,7 +28,7 @@
                 <div class="bg-gray-50 px-5 py-3">
                     <div class="text-sm">
                         <a href="{{ route('domains.index') }}" class="font-medium text-gray-700 hover:text-gray-900">
-                            View all
+                            {{ __('View all') }}
                         </a>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">
-                                    Total Domains
+                                    {{ __('Total Domains') }}
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
@@ -57,7 +57,7 @@
                 <div class="bg-gray-50 px-5 py-3">
                     <div class="text-sm">
                         <a href="{{ route('domains.index') }}" class="font-medium text-gray-700 hover:text-gray-900">
-                            View all
+                            {{ __('View all') }}
                         </a>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">
-                                    Total Registrars
+                                    {{ __('Total Registrars') }}
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
@@ -86,7 +86,7 @@
                 <div class="bg-gray-50 px-5 py-3">
                     <div class="text-sm">
                         <a href="{{ route('registrars.index') }}" class="font-medium text-gray-700 hover:text-gray-900">
-                            View all
+                            {{ __('View all') }}
                         </a>
                     </div>
                 </div>

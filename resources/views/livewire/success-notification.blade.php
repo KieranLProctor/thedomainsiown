@@ -17,7 +17,7 @@
                 </div>
                 <div class="ml-3 w-0 flex-1 pt-0.5">
                     <p class="text-sm font-medium text-gray-900">
-                        Success!
+                        {{ __('Success!') }}
                     </p>
                     <p class="mt-1 text-sm text-gray-500">
                         {{ session('message') }}
@@ -26,7 +26,7 @@
                 <div class="ml-4 flex-shrink-0 flex">
                     <button @click="show = false;"
                             class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        <span class="sr-only">Close</span>
+                        <span class="sr-only">{{ __('Close') }}</span>
                         <x-heroicon-s-x class="h-5 w-5"/>
                     </button>
                 </div>

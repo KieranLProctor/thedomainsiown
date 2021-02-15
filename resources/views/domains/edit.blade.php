@@ -25,7 +25,7 @@
                                 <x-jet-label for="top_level_domain_id" value="{{ __('TLD') }}"/>
                                 <select id="top_level_domain_id" name="top_level_domain_id"
                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                    <option value="" selected>Select...</option>
+                                    <option value="" selected>{{ __('Select...') }}</option>
                                     @foreach($tlds as $tld)
                                         <option
                                             value="{{ $tld->id }}" {{ ( $tld->id == $domain->topLevelDomain->id) ? 'selected' : '' }}>{{ $tld->name }}</option>
@@ -39,7 +39,7 @@
                                 <x-jet-label for="registrar_id" value="{{ __('Registrar') }}"/>
                                 <select id="registrar_id" name="registrar_id"
                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                    <option value="">Select...</option>
+                                    <option value="">{{ __('Select...') }}</option>
                                     @foreach($registrars as $registrar)
                                         <option
                                             value="{{ $registrar->id }}" {{ ( $registrar->id == $domain->registrar->id) ? 'selected' : '' }}>{{ $registrar->name }}</option>
@@ -84,7 +84,7 @@
                             <!-- Auto Renews -->
                             <div class="col-span-3 sm:col-span-2">
                                 <label for="will_autorenew" class="flex items-center">
-                                    <x-jet-checkbox id="will_autorenew" name="will_autorenew"/>
+                                    <x-jet-checkbox id="will_autorenew" name="will_autorenew" {{ $domain->will_autorenew == 1 ? 'checked' : null }}/>
                                     <span class="ml-2 text-sm text-gray-600">{{ __('Auto-renews?') }}</span>
                                 </label>
                             </div>
@@ -92,7 +92,7 @@
                             <!-- SSL Certificate -->
                             <div class="col-span-3 sm:col-span-2">
                                 <label for="has_ssl_certificate" class="flex items-center">
-                                    <x-jet-checkbox id="has_ssl_certificate" name="has_ssl_certificate"/>
+                                    <x-jet-checkbox id="has_ssl_certificate" name="has_ssl_certificate" {{ $domain->has_ssl_certificate == 1 ? 'checked' : null }}/>
                                     <span class="ml-2 text-sm text-gray-600">{{ __('SSL Certificate?') }}</span>
                                 </label>
                             </div>

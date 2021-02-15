@@ -14,7 +14,7 @@
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">
-                                    Location value
+                                    {{ __('Location value') }}
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
@@ -36,7 +36,7 @@
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">
-                                    Location Items
+                                    {{ __('Location Items') }}
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
@@ -58,8 +58,8 @@
                     <livewire:search-bar/>
                     <div class="float-right">
                         <a href="{{ route('domains.create') }}"
-                           class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Add
-                            Domain</a>
+                           class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">{{ __('Add
+                            Domain') }}</a>
                     </div>
                 </div>
                 <div class="flex flex-col">

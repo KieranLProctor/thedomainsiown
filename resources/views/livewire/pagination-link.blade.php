@@ -5,36 +5,36 @@
                 @if($paginator->onFirstPage())
                     <span
                         class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
-                    Previous
+                    {{ __('Previous') }}
                 </span>
                 @else
                     <button wire:click="previousPage"
                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
-                        Previous
+                        {{ __('Previous') }}
                     </button>
                 @endif
                 @if($paginator->hasMorePages())
                     <button wire:click="nextPage"
                        class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
-                        Next
+                        {{ __('Next') }}
                     </button>
                 @else
                     <span
                         class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
-                    Next
+                    {{ __('Next') }}
                 </span>
                 @endif
             </div>
             <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                 <div>
                     <p class="text-sm text-gray-700">
-                        Showing
+                        {{ __('Showing') }}
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                        to
+                        {{ __('to') }}
                         <span class="font-medium">{{ $paginator->lastItem() }}</span>
-                        of
+                        {{ __('of') }}
                         <span class="font-medium">{{ $paginator->total() }}</span>
-                        results
+                        {{ __('results') }}
                     </p>
                 </div>
                 <div>
@@ -42,13 +42,13 @@
                         @if($paginator->onFirstPage())
                             <span
                                 class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 text-sm font-medium text-gray-500 bg-gray-50">
-                            <span class="sr-only">Previous</span>
+                            <span class="sr-only">{{ __('Previous') }}</span>
                             <x-heroicon-s-x class="h-5 w-5"/>
                         </span>
                         @else
                             <button wire:click="previousPage"
                                     class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                <span class="sr-only">Previous</span>
+                                <span class="sr-only">{{ __('Previous') }}</span>
                                 <x-heroicon-s-chevron-left class="h-5 w-5"/>
                             </button>
                         @endif
@@ -87,13 +87,13 @@
                         @if($paginator->hasMorePages())
                             <button wire:click="nextPage"
                                     class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                <span class="sr-only">Next</span>
+                                <span class="sr-only">{{ __('Next') }}</span>
                                 <x-heroicon-s-chevron-right class="h-5 w-5"/>
                             </button>
                         @else
                             <span
                                 class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 text-sm font-medium text-gray-500 bg-gray-50">
-                            <span class="sr-only">Next</span>
+                            <span class="sr-only">{{ __('Next') }}</span>
                             <x-heroicon-s-x class="h-5 w-5"/>
                             </span>
                         @endif

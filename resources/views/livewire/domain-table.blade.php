@@ -4,35 +4,31 @@
         <tr>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Name
+                {{ __('Name') }}
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                TLD
+                {{ __('Registrar') }}
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Registrar
+                {{ __('Registered Date') }}
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Registered Date
+                {{ __('Yearly Cost') }}
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Yearly Cost
+                {{ __('Auto-renews?') }}
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Auto-renews?
+                {{ __('SSL Certificate?') }}
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                SSL Certificate?
-            </th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                <span class="sr-only">Actions</span>
-                Actions
+                {{ __('Actions') }}
             </th>
         </tr>
         </thead>
@@ -41,8 +37,8 @@
             <tr>
                 <td colspan="8" class="text-sm font-medium whitespace-nowrap text-center px-6 py-4 text-gray-700">
                     <span>
-                        There doesn't appear to be any domains, why not <a class="underline"
-                                                                           href="{{ route('domains.create') }}">Add one?</a>
+                        {{ __('There doesn\'t appear to be any domains, why not') }} <a class="underline"
+                                                                           href="{{ route('domains.create') }}">{{ __('Add one?') }}</a>
                     </span>
                 </td>
             </tr>
@@ -51,12 +47,7 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">
-                            <a href="{{ $domain->full_domain }}" target="_blank">{{ $domain->name }}</a>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">
-                            {{ $domain->topLevelDomain->name }}
+                            <a href="{{ $domain->full_domain }}" target="_blank">{{ $domain->name . '.' . $domain->topLevelDomain->name }}</a>
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
@@ -93,13 +84,13 @@
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex flex-row gap-2 items-center">
                         <a href="{{ route('domains.show', $domain) }}"
                            class="text-gray-600 hover:text-gray-900">
-                            <span class="sr-only">View</span>
+                            <span class="sr-only">{{ __('View') }}</span>
                             <x-heroicon-o-eye class="h-5 w-5"/>
                         </a>
 
                         <a href="{{ route('domains.edit', $domain) }}"
                            class="text-gray-600 hover:text-gray-900">
-                            <span class="sr-only">Edit</span>
+                            <span class="sr-only">{{ __('Edit') }}</span>
                             <x-heroicon-o-pencil-alt class="h-5 w-5"/>
                         </a>
 
@@ -108,7 +99,7 @@
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('Are you sure?');"
                                     class="text-gray-600 hover:text-red-600">
-                                <span class="sr-only">Delete</span>
+                                <span class="sr-only">{{ __('Delete') }}</span>
                                 <x-heroicon-o-trash class="h-5 w-5"/>
                             </button>
                         </form>

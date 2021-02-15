@@ -23,7 +23,7 @@
                                 <x-jet-label for="top_level_domain_id" value="{{ __('TLD') }}"/>
                                 <select id="top_level_domain_id" name="top_level_domain_id"
                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                    <option value="" selected>Select...</option>
+                                    <option value="" selected>{{ __('Select...') }}</option>
                                     @foreach($tlds as $tld)
                                         <option value="{{ $tld->id }}">{{ $tld->name }}</option>
                                     @endforeach
@@ -36,7 +36,7 @@
                                 <x-jet-label for="registrar_id" value="{{ __('Registrar') }}"/>
                                 <select id="registrar_id" name="registrar_id"
                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                    <option value="" selected>Select...</option>
+                                    <option value="" selected>{{ __('Select...') }}</option>
                                     @foreach($registrars as $registrar)
                                         <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
                                     @endforeach
