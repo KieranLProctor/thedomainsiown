@@ -28,17 +28,13 @@
         @else
             @foreach($registrars as $registrar)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">
-                            {{ $registrar->name }}
-                        </div>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {{ $registrar->name }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">
-                            {{ $registrar->email }}
-                        </div>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{ $registrar->email }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex flex-row gap-2 items-center">
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium items-center">
                         <a href="{{ route('registrars.show', $registrar) }}"
                            class="text-gray-600 hover:text-gray-900">
                             <x-heroicon-o-eye class="h-5 w-5"/>

@@ -38,32 +38,25 @@
                 <td colspan="8" class="text-sm font-medium whitespace-nowrap text-center px-6 py-4 text-gray-700">
                     <span>
                         {{ __('There doesn\'t appear to be any domains, why not') }} <a class="underline"
-                                                                           href="{{ route('domains.create') }}">{{ __('Add one?') }}</a>
+                                                                                        href="{{ route('domains.create') }}">{{ __('Add one?') }}</a>
                     </span>
                 </td>
             </tr>
         @else
             @foreach($domains as $domain)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">
-                            <a href="{{ $domain->full_domain }}" target="_blank">{{ $domain->name . '.' . $domain->topLevelDomain->name }}</a>
-                        </div>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <a href="{{ $domain->full_domain }}"
+                           target="_blank">{{ $domain->name . '.' . $domain->topLevelDomain->name }}</a>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">
-                            {{ $domain->registrar->name }}
-                        </div>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{ $domain->registrar->name }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">
-                            <x-carbon :date="$domain->registered_date" format="d M Y"/>
-                        </div>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <x-carbon :date="$domain->registered_date" format="d M Y"/>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">
-                            £{{ $domain->formatted_yearly_cost }}
-                        </div>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        £{{ $domain->formatted_yearly_cost }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <span
@@ -81,7 +74,7 @@
                                 {{ $domain->has_ssl_certificate ? 'Yes' : 'No' }}
                          </span>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex flex-row gap-2 items-center">
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex items-center space-x-2">
                         <a href="{{ route('domains.show', $domain) }}"
                            class="text-gray-600 hover:text-gray-900">
                             <span class="sr-only">{{ __('View') }}</span>
@@ -94,7 +87,7 @@
                             <x-heroicon-o-pencil-alt class="h-5 w-5"/>
                         </a>
 
-                        <form method="POST" action="{{ route('domains.destroy', $domain) }}">
+                        <form method="POST" action="{{ route('domains.destroy', $domain) }}" class="flex items-center">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('Are you sure?');"
