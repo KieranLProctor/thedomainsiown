@@ -84,7 +84,9 @@
                             <!-- Auto Renews -->
                             <div class="col-span-3 sm:col-span-2">
                                 <label for="will_autorenew" class="flex items-center">
-                                    <x-jet-checkbox id="will_autorenew" name="will_autorenew" {{ $domain->will_autorenew == 1 ? 'checked' : null }}/>
+                                    <input type="checkbox"
+                                           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                           name="will_autorenew" {{ $domain->will_autorenew == 1 ? 'checked' : null }}/>
                                     <span class="ml-2 text-sm text-gray-600">{{ __('Auto-renews?') }}</span>
                                 </label>
                             </div>
@@ -92,7 +94,9 @@
                             <!-- SSL Certificate -->
                             <div class="col-span-3 sm:col-span-2">
                                 <label for="has_ssl_certificate" class="flex items-center">
-                                    <x-jet-checkbox id="has_ssl_certificate" name="has_ssl_certificate" {{ $domain->has_ssl_certificate == 1 ? 'checked' : null }}/>
+                                    <input type="checkbox"
+                                           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                           name="has_ssl_certificate" {{ $domain->has_ssl_certificate == 1 ? 'checked' : null }}/>
                                     <span class="ml-2 text-sm text-gray-600">{{ __('SSL Certificate?') }}</span>
                                 </label>
                             </div>
