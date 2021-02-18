@@ -218,11 +218,9 @@
                                 </div>
 
                                 <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                    <div class="flex flex-row items-center">
-                                        <x-heroicon-o-user
-                                            class="w-5 h-5 mr-3 text-gray-400 dark:text-gray-300 dark:hover-text-white"/>
-                                        {{ __('Profile') }}
-                                    </div>
+                                    <x-heroicon-o-user
+                                        class="w-5 h-5 mr-3 text-gray-400 dark:text-gray-300 dark:hover-text-white"/>
+                                    {{ __('Profile') }}
                                 </x-jet-dropdown-link>
 
                                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -271,11 +269,8 @@
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
                                                             this.closest('form').submit();">
-                                        <div class="flex flex-row items-center">
-                                            <x-heroicon-o-logout class="w-5 h-5 mr-3 text-gray-400"/>
-
-                                            {{ __('Logout') }}
-                                        </div>
+                                        <x-heroicon-o-logout class="w-5 h-5 mr-3 text-gray-400"/>
+                                        {{ __('Logout') }}
                                     </x-jet-dropdown-link>
                                 </form>
                             </x-slot>
