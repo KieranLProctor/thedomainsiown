@@ -173,9 +173,7 @@
 
                                 <div class="border-t border-gray-100 dark:border-gray-600">
                                     <x-jet-dropdown-link href="{{ route('notifications.index') }}">
-                                        <div class="flex flex-row items-center">
-                                            {{ __('View All') }}
-                                        </div>
+                                        {{ __('View All') }}
                                     </x-jet-dropdown-link>
                                 </div>
                             </x-slot>
@@ -219,7 +217,7 @@
 
                                 <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                     <x-heroicon-o-user
-                                        class="w-5 h-5 mr-3 text-gray-400 dark:text-gray-300 dark:hover-text-white"/>
+                                        class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-300 dark:group-hover-text-white"/>
                                     {{ __('Profile') }}
                                 </x-jet-dropdown-link>
 
@@ -269,7 +267,8 @@
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
                                                             this.closest('form').submit();">
-                                        <x-heroicon-o-logout class="w-5 h-5 mr-3 text-gray-400"/>
+                                        <x-heroicon-o-logout
+                                            class="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-300 dark:group-hover-text-white"/>
                                         {{ __('Logout') }}
                                     </x-jet-dropdown-link>
                                 </form>
