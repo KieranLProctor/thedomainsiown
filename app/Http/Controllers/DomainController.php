@@ -126,7 +126,7 @@ class DomainController extends Controller
             'has_ssl_certificate' => $request->has('has_ssl_certificate'),
         ]);
 
-        return redirect()->route('domains.index')->with('message', 'The domain has been successfully updated!');
+        return redirect()->route('domains.index');
     }
 
     /**

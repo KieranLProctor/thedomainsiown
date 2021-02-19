@@ -1,8 +1,7 @@
 <x-app-layout>
     <div>
         <div class="mt-5 md:mt-0 w-full lg:w-1/2">
-            <form action="{{ route('domains.store') }}" method="POST">
-                @csrf
+            <x-form action="{{ route('domains.store') }}">
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                         <h1 class="text-2xl font-semibold text-gray-900">
@@ -12,9 +11,8 @@
                             <!-- Name -->
                             <div class="col-span-6 sm:col-span-4">
                                 <x-jet-label for="name" value="{{ __('Name') }}"/>
-                                <input id="name" name="name"
-                                       class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                                       type="text">
+                                <x-input name="name"
+                                       class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" />
                                 <x-jet-input-error for="name" class="mt-2"/>
                             </div>
 
@@ -64,7 +62,7 @@
                                     </div>
                                     <input type="number" name="yearly_cost" id="yearly_cost"
                                            class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
-                                           placeholder="0.00" aria-describedby="price-currency">
+                                           placeholder="0.00"  aria-describedby="price-currency">
                                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm" id="price-currency">
                                             GBP
@@ -97,7 +95,7 @@
                         </x-jet-button>
                     </div>
                 </div>
-            </form>
+            </x-form>
         </div>
     </div>
 </x-app-layout>

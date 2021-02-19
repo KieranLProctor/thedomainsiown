@@ -1,4 +1,25 @@
 <div>
+    <!-- Delete User Confirmation Modal -->
+    <x-jet-dialog-modal wire:model="confirmingDomainDeletion">
+        <x-slot name="title">
+            {{ __('Delete Domain') }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Are you sure you want to delete this domain? Once the domain is deleted, all of its resources and data will be permanently deleted.') }}
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('confirmingDomainDeletion')" wire:loading.attr="disabled">
+                {{ __('Nevermind') }}
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="deleteDomain" wire:loading.attr="disabled">
+                {{ __('Delete Domain') }}
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-dialog-modal>
+
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
         <tr>
@@ -87,15 +108,21 @@
                             <x-heroicon-o-pencil-alt class="h-5 w-5"/>
                         </a>
 
-                        <form method="POST" action="{{ route('domains.destroy', $domain) }}" class="flex items-center">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure?');"
-                                    class="text-gray-600 hover:text-red-600">
-                                <span class="sr-only">{{ __('Delete') }}</span>
-                                <x-heroicon-o-trash class="h-5 w-5"/>
-                            </button>
-                        </form>
+                        {{--                        <form method="POST" action="{{ route('domains.destroy', $domain) }}" class="flex items-center">--}}
+                        {{--                            @csrf--}}
+                        {{--                            @method('DELETE')--}}
+                        {{--                            <button type="submit" onclick="return confirm('Are you sure?');"--}}
+                        {{--                                    class="text-gray-600 hover:text-red-600">--}}
+                        {{--                                <span class="sr-only">{{ __('Delete') }}</span>--}}
+                        {{--                                <x-heroicon-o-trash class="h-5 w-5"/>--}}
+                        {{--                            </button>--}}
+                        {{--                        </form>--}}
+
+                        <button wire:click="confirmDomainDeletion({{ $domain }})"
+                                class="text-gray-600 hover:text-red-600">
+                            <span class="sr-only">{{ __('Delete') }}</span>
+                            <x-heroicon-o-trash class="h-5 w-5"/>
+                        </button>
                     </td>
                 </tr>
             @endforeach

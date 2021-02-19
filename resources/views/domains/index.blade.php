@@ -3,10 +3,6 @@
         {{ __('Domains') }}
     </x-slot>
 
-    @if(session()->has('message'))
-        <livewire:success-notification/>
-    @endif
-
     <div class="py-4">
         <div class="flex justify-between">
             <livewire:search-bar/>
