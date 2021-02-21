@@ -10,25 +10,27 @@ class DomainTable extends Component
 {
     use WithPagination;
 
-    public $domain;
+    public Domain $domain;
+    public string $search = '';
+    public int $perPage = 25;
 
     /**
      * Indicates if domain deletion is being confirmed.
      *
      * @var bool
      */
-    public $confirmingDomainDeletion = false;
+    public $showingDomainDelete = false;
 
     /**
      * Confirm that the user would like to delete the domain.
      *
      * @return void
      */
-    public function confirmDomainDeletion(Domain $domain)
+    public function showDomainDelete(Domain $domain)
     {
         $this->domain = $domain;
 
-        $this->confirmingDomainDeletion = true;
+        $this->showingDomainDelete = true;
     }
 
     /**
@@ -40,13 +42,17 @@ class DomainTable extends Component
     {
         Domain::find($this->domain->id)->delete();
 
-        return redirect()->route('domains.index');
+        $this->showingDomainDelete = false;
+
+        $this->emit('refresh');
     }
 
     public function render()
     {
+        $domains = !empty($this->search) ? Domain::where('name', 'like', '%' . $this->search . '%')->paginate($this->perPage) : Domain::paginate($this->perPage);
+
         return view('livewire.domain-table', [
-            'domains' => Domain::paginate(100)
+            'domains' => $domains
         ]);
     }
 }
