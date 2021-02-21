@@ -20,13 +20,23 @@
         </x-slot>
     </x-jet-dialog-modal>
 
-    <div class="relative text-gray-600">
-        <input class="shadow-sm border-gray-200 bg-white px-5 pr-16 rounded-lg text-sm focus:outline-none"
-               type="search" name="search" placeholder="Search"
-               wire:model="search">
-        <button type="submit" class="relative right-0 top-0 mt-2.5 mr-4">
-            <x-heroicon-o-search class="text-gray-600 h-5 w-5"/>
-        </button>
+    <div class="flex space-x-2">
+        <select wire:model="perPage" class="shadow-sm border-gray-200 bg-white pl-3 pr-10 py-2 rounded-lg text-sm focus:outline-none">
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
+            <option>250</option>
+        </select>
+
+        <div class="relative text-gray-600">
+            <input class="shadow-sm border-gray-200 bg-white px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                   type="search" name="search" placeholder="Search"
+                   wire:model.debounce.300ms="search">
+            <button type="submit" class="relative right-0 top-0 mt-2.5 mr-4">
+                <x-heroicon-o-search class="text-gray-600 h-5 w-5"/>
+            </button>
+        </div>
     </div>
 
     <div class="flex flex-col">

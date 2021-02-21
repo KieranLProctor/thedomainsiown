@@ -46,6 +46,12 @@ class Domain extends Model
         'registered_date' => 'date',
     ];
 
+    public static function search($search)
+    {
+        return empty($search) ? static::query()
+            : static::query()->where('name', 'like', '%'.$search.'%');
+    }
+
     /**
      * Return the registrar the domain belongs to.
      *

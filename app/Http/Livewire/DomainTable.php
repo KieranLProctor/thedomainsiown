@@ -49,10 +49,9 @@ class DomainTable extends Component
 
     public function render()
     {
-        $domains = !empty($this->search) ? Domain::where('name', 'like', '%' . $this->search . '%')->paginate($this->perPage) : Domain::paginate($this->perPage);
-
         return view('livewire.domain-table', [
-            'domains' => $domains
+            'domains' => Domain::search($this->search)
+                ->paginate($this->perPage)
         ]);
     }
 }
