@@ -20,22 +20,34 @@
         </x-slot>
     </x-jet-dialog-modal>
 
-    <div class="flex space-x-2">
-        <select wire:model="perPage" class="shadow-sm border-gray-200 bg-white pl-3 pr-10 py-2 rounded-lg text-sm focus:outline-none">
-            <option>10</option>
-            <option>25</option>
-            <option>50</option>
-            <option>100</option>
-            <option>250</option>
-        </select>
+    <div class="flex justify-between">
+        <div class="flex flex-row space-x-2">
+            <select wire:model="perPage"
+                    class="shadow-sm border-gray-200 bg-white pl-3 pr-10 h-auto rounded-lg text-sm focus:ring-gray-900 focus:border-gray-900">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+                <option>250</option>
+            </select>
 
-        <div class="relative text-gray-600">
-            <input class="shadow-sm border-gray-200 bg-white px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                   type="search" name="search" placeholder="Search"
-                   wire:model.debounce.300ms="search">
-            <button type="submit" class="relative right-0 top-0 mt-2.5 mr-4">
-                <x-heroicon-o-search class="text-gray-600 h-5 w-5"/>
-            </button>
+            <div class="mt-0.5 relative rounded-lg shadow-sm">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none
+text-gray-400 focus-within:text-gray-600">
+                    <x-heroicon-o-search class="h-5 w-5"/>
+                </div>
+                <input name="email"
+                       type="text"
+                       placeholder="Search"
+                       wire:model.debounce.300ms="search"
+                       class="focus:ring-gray-900 focus:border-gray-900 block w-full pl-10 sm:text-sm border-gray-200 rounded-lg">
+            </div>
+        </div>
+
+        <div>
+            <a href="{{ route('domains.create') }}"
+               class="inline-flex items-center h-full px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">{{ __('Add
+                    Domain') }}</a>
         </div>
     </div>
 

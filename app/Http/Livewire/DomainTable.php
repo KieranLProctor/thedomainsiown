@@ -13,6 +13,7 @@ class DomainTable extends Component
     public Domain $domain;
     public string $search = '';
     public int $perPage = 25;
+    public $actionButton;
 
     /**
      * Indicates if domain deletion is being confirmed.
