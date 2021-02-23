@@ -36,7 +36,7 @@
 text-gray-400 focus-within:text-gray-600">
                     <x-heroicon-o-search class="h-5 w-5"/>
                 </div>
-                <input name="email"
+                <input name="search"
                        type="text"
                        placeholder="Search"
                        wire:model.debounce.300ms="search"
