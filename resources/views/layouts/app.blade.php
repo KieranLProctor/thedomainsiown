@@ -68,7 +68,7 @@
                     <nav class="px-2 space-y-1">
                         <x-jet-responsive-nav-link href="{{ route('pages.dashboard') }}"
                                                    :active="request()->routeIs('pages.dashboard')">
-                            <x-heroicon-o-home
+                            <x-tabler-home
                                 class="mr-4 h-6 w-6"/>
                             {{ __('Dashboard') }}
                         </x-jet-responsive-nav-link>
@@ -111,7 +111,7 @@
                     <nav class="flex-1 px-2 py-4 bg-gray-800 space-y-1">
                         <x-jet-nav-link href="{{ route('pages.dashboard') }}"
                                         :active="request()->routeIs('pages.dashboard')">
-                            <x-heroicon-o-home class="mr-3 h-6 w-6"/>
+                            <x-tabler-home class="mr-3 h-6 w-6"/>
                             {{ __('Dashboard') }}
                         </x-jet-nav-link>
 
@@ -145,7 +145,7 @@
                         <label for="search_field" class="sr-only">{{ __('Search') }}</label>
                         <div class="relative w-full text-gray-400 focus-within:text-gray-600">
                             <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-                                <x-heroicon-o-search class="h-5 w-5"/>
+                                <x-tabler-search class="h-5 w-5"/>
                             </div>
                             <input id="search_field"
                                    class="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent sm:text-sm"
@@ -161,7 +161,7 @@
                                 <button
                                     class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     <span class="sr-only">{{ __('View Notifications') }}</span>
-                                    <x-heroicon-o-bell class="h-6 w-6"/>
+                                    <x-tabler-bell class="h-6 w-6"/>
                                 </button>
                             </x-slot>
 
