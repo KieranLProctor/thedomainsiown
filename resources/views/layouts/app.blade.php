@@ -74,14 +74,14 @@
                         </x-jet-responsive-nav-link>
 
                         <x-jet-responsive-nav-link href="{{ route('domains.index') }}"
-                                                   :active="request()->routeIs('domains.index')">
+                                                   :active="request()->routeIs('domains.*')">
                             <x-heroicon-o-shopping-cart
                                 class="mr-4 h-6 w-6"/>
                             {{ __('Domains') }}
                         </x-jet-responsive-nav-link>
 
                         <x-jet-responsive-nav-link href="{{ route('registrars.index') }}"
-                                                   :active="request()->routeIs('registrars.index')">
+                                                   :active="request()->routeIs('registrars.*')">
                             <x-heroicon-o-location-marker
                                 class="mr-4 h-6 w-6"/>
                             {{ __('Registrars') }}
@@ -116,13 +116,13 @@
                         </x-jet-nav-link>
 
                         <x-jet-nav-link href="{{ route('domains.index') }}"
-                                        :active="request()->routeIs('domains.index')">
+                                        :active="request()->routeIs('domains.*')">
                             <x-heroicon-o-shopping-cart class="mr-3 h-6 w-6"/>
                             {{ __('Domains') }}
                         </x-jet-nav-link>
 
                         <x-jet-nav-link href="{{ route('registrars.index') }}"
-                                        :active="request()->routeIs('registrars.index')">
+                                        :active="request()->routeIs('registrars.*')">
                             <x-heroicon-o-location-marker class="mr-3 h-6 w-6"/>
                             {{ __('Registrars') }}
                         </x-jet-nav-link>
