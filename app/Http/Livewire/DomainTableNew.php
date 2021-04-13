@@ -29,7 +29,7 @@ class DomainTableNew extends Component
     {
         return view('livewire.domain-table-new', [
             'domains' => Domain::search($this->search)
-                ->orderBy($this->sortField, $this->sortDirection)
+                //->orderBy($this->sortField, $this->sortDirection)
                 ->paginate(5),
         ]);
     }
