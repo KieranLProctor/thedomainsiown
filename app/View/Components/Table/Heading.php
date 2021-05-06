@@ -6,17 +6,17 @@ use Illuminate\View\Component;
 
 class Heading extends Component
 {
-    public $sortable;
-    public $direction;
+    public string $sortable;
+    public string $direction;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($direction, $sortable = '')
+    public function __construct($direction = '', $sortable = '')
     {
-        $this->direction = $direction;
+        $this->direction = $direction != null ? $direction : '';
         $this->sortable = $sortable;
     }
 

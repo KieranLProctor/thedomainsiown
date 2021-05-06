@@ -11,8 +11,9 @@ class DomainTableNew extends Component
     use WithPagination;
 
     public string $search = '';
-    public string $sortField;
+    public string $sortField = 'name';
     public string $sortDirection = 'asc';
+    public int $perPage = 25;
 
     public function sortBy($field)
     {
@@ -29,7 +30,7 @@ class DomainTableNew extends Component
     {
         return view('livewire.domain-table-new', [
             'domains' => Domain::search($this->search)
-                //->orderBy($this->sortField, $this->sortDirection)
+                ->orderBy($this->sortField, $this->sortDirection)
                 ->paginate(5),
         ]);
     }

@@ -5,14 +5,15 @@
         </span>
     @else
         <button
-            {{ $attributes->except('class') }} class="flex items-center space-x-1 text-left text-xs leading-4 font-medium">
+            {{ $attributes->except('class') }} class="flex items-center space-x-1 text-left text-xs uppercase tracking-wider text-gray-500 hover:text-gray-600 leading-4 font-medium">
             <span>{{ $slot }}</span>
 
             <span>
                 @if($direction === 'asc')
-                    <x-tabler-caret-down class="w-3 h-3"/>
+                    <x-tabler-chevron-down class="w-3 h-3" />
+
                 @elseif($direction === 'desc')
-                    <x-tabler-caret-up class="w-3 h-3"/>
+                    <x-tabler-chevron-up class="w-3 h-3"/>
                 @else
                 @endif
             </span>
