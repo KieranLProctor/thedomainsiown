@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="py-4">
-        <livewire:domain-table/>
+{{--        <livewire:domain-table/>--}}
     </div>
 
     <div class="py-8">

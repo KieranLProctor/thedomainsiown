@@ -14,7 +14,6 @@
                 </div>
                 <div class="w-1/4">
                     <x-input.text wire:model="search" placeholder="Search..." />
-                    {{--                <x-jet-input class="block w-full" wire:model="search" placeholder="Search Domains..."></x-jet-input>--}}
                 </div>
             </div>
             <div class="float-right">
