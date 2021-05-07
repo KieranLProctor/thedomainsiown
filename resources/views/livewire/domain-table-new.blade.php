@@ -130,70 +130,60 @@
         </x-slot>
 
         <x-slot name="content">
-            {{--            <x-input.group for="" title="">--}}
-            {{--                <x-input.text id=""></x-input.text>--}}
-            {{--            </x-input.group>--}}
+        {{--            <x-input.group for="" title="">--}}
+        {{--                <x-input.text id=""></x-input.text>--}}
+        {{--            </x-input.group>--}}
+        <!-- Name -->
+            <x-jet-label for="name" value="{{ __('Name') }}"/>
+            <input id="name" name="name"
+                   class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                   type="text"
+                   value="{{ $domain->name }}">
+            <x-jet-input-error for="name" class="mt-2"/>
 
-            <form action="{{ route('domains.update', $domain) }}" method="POST">
-            @csrf
-            @method('PATCH')
-            <!-- Name -->
-                <x-jet-label for="name" value="{{ __('Name') }}"/>
-                <input id="name" name="name"
+            <!-- Registered Date -->
+            <x-jet-label for="registered_date" value="{{ __('Registered Date') }}"/>
+            <x-pikaday name="registered_date"
                        class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                       type="text"
-                       value="{{ $domain->name }}">
-                <x-jet-input-error for="name" class="mt-2"/>
+                       format="YYYY-MM-DD"
+                       value="{{ $domain->registered_date }}"/>
+            <x-jet-input-error for="registered_date" class="mt-2"/>
 
-                <!-- Registered Date -->
-                <x-jet-label for="registered_date" value="{{ __('Registered Date') }}"/>
-                <x-pikaday name="registered_date"
-                           class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                           format="YYYY-MM-DD"
-                           value="{{ $domain->registered_date }}"/>
-                <x-jet-input-error for="registered_date" class="mt-2"/>
-
-                <!-- Yearly Cost -->
-                <x-jet-label for="yearly_cost" value="{{ __('Yearly Cost') }}"/>
-                <div class="mt-1 relative rounded-md shadow-sm">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <!-- Yearly Cost -->
+            <x-jet-label for="yearly_cost" value="{{ __('Yearly Cost') }}"/>
+            <div class="mt-1 relative rounded-md shadow-sm">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm">
                                             £
                                         </span>
-                    </div>
-                    <input type="number" name="yearly_cost" id="yearly_cost"
-                           class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
-                           placeholder="0.00" value="{{ $domain->formatted_yearly_cost }}"
-                           aria-describedby="price-currency">
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                </div>
+                <input type="number" name="yearly_cost" id="yearly_cost"
+                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+                       placeholder="0.00" value="{{ $domain->formatted_yearly_cost }}"
+                       aria-describedby="price-currency">
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm" id="price-currency">
                                             GBP
                                         </span>
-                    </div>
                 </div>
-                <x-jet-input-error for="yearly_cost" class="mt-2"/>
+            </div>
+            <x-jet-input-error for="yearly_cost" class="mt-2"/>
 
-                <!-- Auto Renews -->
-                <label for="will_autorenew" class="flex items-center">
-                    <input type="checkbox"
-                           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           name="will_autorenew" {{ $domain->will_autorenew == 1 ? 'checked' : null }}/>
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Auto-renews?') }}</span>
-                </label>
+            <!-- Auto Renews -->
+            <label for="will_autorenew" class="flex items-center">
+                <input type="checkbox"
+                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                       name="will_autorenew" {{ $domain->will_autorenew == 1 ? 'checked' : null }}/>
+                <span class="ml-2 text-sm text-gray-600">{{ __('Auto-renews?') }}</span>
+            </label>
 
-                <!-- SSL Certificate -->
-                <label for="has_ssl_certificate" class="flex items-center">
-                    <input type="checkbox"
-                           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           name="has_ssl_certificate" {{ $domain->has_ssl_certificate == 1 ? 'checked' : null }}/>
-                    <span class="ml-2 text-sm text-gray-600">{{ __('SSL Certificate?') }}</span>
-                </label>
-                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <x-jet-button>
-                        {{ __('Update Domain') }}
-                    </x-jet-button>
-                </div>
-            </form>
+            <!-- SSL Certificate -->
+            <label for="has_ssl_certificate" class="flex items-center">
+                <input type="checkbox"
+                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                       name="has_ssl_certificate" {{ $domain->has_ssl_certificate == 1 ? 'checked' : null }}/>
+                <span class="ml-2 text-sm text-gray-600">{{ __('SSL Certificate?') }}</span>
+            </label>
         </x-slot>
 
         <x-slot name="footer">
@@ -214,7 +204,7 @@
         </x-slot>
 
         <x-slot name="content">
-            {{ __('Are you sure you want to delete this domain? Once the domain is deleted, all of its resources and data will be permanently gone.') }}
+            {{ __('Are you sure you want to delete this domain? Once the domain is deleted, all of its resources and data will be permanently lost.') }}
         </x-slot>
 
         <x-slot name="footer">

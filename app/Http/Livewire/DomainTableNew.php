@@ -56,6 +56,15 @@ class DomainTableNew extends Component
         $this->showingDeleteModal = true;
     }
 
+    public function editDomain()
+    {
+//        Domain::find($this->domain->id);
+
+        $this->showingEditModal = false;
+
+        $this->emit('refresh');
+    }
+
     public function deleteDomain()
     {
         Domain::find($this->domain->id)->delete();
