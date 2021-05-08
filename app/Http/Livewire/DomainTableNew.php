@@ -19,7 +19,13 @@ class DomainTableNew extends Component
     public bool $showingDeleteModal = false;
 
     protected $rules = [
-        'domain.name' => ['required']
+        'domain.name' => ['required'],
+        'domain.top_level_domain_id' => ['required'],
+        'domain.registrar_id' => ['required'],
+        'domain.registered_date' => ['required'],
+        'domain.yearly_cost' => ['required'],
+        'domain.will_autorenew' => ['required'],
+        'domain.has_ssl_certificate' => ['required'],
     ];
 
     public function sortBy($field)
@@ -56,9 +62,11 @@ class DomainTableNew extends Component
         $this->showingDeleteModal = true;
     }
 
-    public function editDomain()
+    public function saveDomain()
     {
-//        Domain::find($this->domain->id);
+        $this->validate();
+
+        $this->domain->save();
 
         $this->showingEditModal = false;
 
@@ -67,7 +75,7 @@ class DomainTableNew extends Component
 
     public function deleteDomain()
     {
-        Domain::find($this->domain->id)->delete();
+        $this->domain->delete();
 
         $this->showingDeleteModal = false;
 

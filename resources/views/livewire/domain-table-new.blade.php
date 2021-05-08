@@ -124,78 +124,54 @@
     </div>
 
     <!-- Edit Domain Modal -->
-    <x-jet-dialog-modal wire:model.defer="showingEditModal">
-        <x-slot name="title">
-            {{ __('Edit Domain') }}
-        </x-slot>
-
-        <x-slot name="content">
-        {{--            <x-input.group for="" title="">--}}
-        {{--                <x-input.text id=""></x-input.text>--}}
-        {{--            </x-input.group>--}}
-        <!-- Name -->
-            <x-jet-label for="name" value="{{ __('Name') }}"/>
-            <input id="name" name="name"
-                   class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                   type="text"
-                   value="{{ $domain->name }}">
-            <x-jet-input-error for="name" class="mt-2"/>
-
-            <!-- Registered Date -->
-            <x-jet-label for="registered_date" value="{{ __('Registered Date') }}"/>
-            <x-pikaday name="registered_date"
-                       class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                       format="YYYY-MM-DD"
-                       value="{{ $domain->registered_date }}"/>
-            <x-jet-input-error for="registered_date" class="mt-2"/>
-
-            <!-- Yearly Cost -->
-            <x-jet-label for="yearly_cost" value="{{ __('Yearly Cost') }}"/>
-            <div class="mt-1 relative rounded-md shadow-sm">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm">
-                                            £
-                                        </span>
-                </div>
-                <input type="number" name="yearly_cost" id="yearly_cost"
-                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
-                       placeholder="0.00" value="{{ $domain->formatted_yearly_cost }}"
-                       aria-describedby="price-currency">
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm" id="price-currency">
-                                            GBP
-                                        </span>
-                </div>
-            </div>
-            <x-jet-input-error for="yearly_cost" class="mt-2"/>
-
-            <!-- Auto Renews -->
-            <label for="will_autorenew" class="flex items-center">
-                <input type="checkbox"
-                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                       name="will_autorenew" {{ $domain->will_autorenew == 1 ? 'checked' : null }}/>
-                <span class="ml-2 text-sm text-gray-600">{{ __('Auto-renews?') }}</span>
-            </label>
-
-            <!-- SSL Certificate -->
-            <label for="has_ssl_certificate" class="flex items-center">
-                <input type="checkbox"
-                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                       name="has_ssl_certificate" {{ $domain->has_ssl_certificate == 1 ? 'checked' : null }}/>
-                <span class="ml-2 text-sm text-gray-600">{{ __('SSL Certificate?') }}</span>
-            </label>
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('showingEditModal')" wire:loading.attr="disabled">
-                {{ __('Nevermind') }}
-            </x-jet-secondary-button>
-
-            <x-jet-button class="ml-2" wire:click="editDomain" wire:loading.attr="disabled">
+    <form wire:submit.prevent="saveDomain">
+        <x-jet-dialog-modal wire:model.defer="showingEditModal">
+            <x-slot name="title">
                 {{ __('Edit Domain') }}
-            </x-jet-button>
-        </x-slot>
-    </x-jet-dialog-modal>
+            </x-slot>
+            <x-slot name="content">
+                <!-- Name -->
+                <x-input.group for="name" label="{{ __('Name') }}">
+                    <x-input.text id="name" placeholder="Name..." wire:model="domain.name"></x-input.text>
+                </x-input.group>
+
+                <!-- Registered Date -->
+                <x-input.group for="registered_date" label="{{ __('Registered Date') }}">
+                    <x-pikaday name="registered_date"
+                               class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                               format="YYYY-MM-DD"
+                               value="{{ $domain->registered_date }}"/>
+                </x-input.group>
+
+                <!-- Yearly Cost -->
+                <x-input.group for="yearly_cost" label="{{ __('Yearly Cost') }}">
+                    <!-- TODO: Change this to be the formatted_yearly_cost -->
+                    <x-input.money id="yearly_cost" wire:model="domain.yearly_cost"></x-input.money>
+                </x-input.group>
+
+                <!-- Auto Renews -->
+                <x-input.group for="will_autorenew" label="{{ __('Auto-Renews?') }}">
+                    <x-input.checkbox id="will_autorenew" wire:model="domain.will_autorenew"></x-input.checkbox>
+                </x-input.group>
+
+                <!-- SSL Certificate -->
+                <x-input.group for="has_ssl_certificate" label="{{ __('SSL Certificate?') }}">
+                    <x-input.checkbox id="has_ssl_certificate"
+                                      wire:model="domain.has_ssl_certificate"></x-input.checkbox>
+                </x-input.group>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('showingEditModal')" wire:loading.attr="disabled">
+                    {{ __('Nevermind') }}
+                </x-jet-secondary-button>
+
+                <x-jet-button class="ml-2" type="submit" wire:loading.attr="disabled">
+                    {{ __('Save Domain') }}
+                </x-jet-button>
+            </x-slot>
+        </x-jet-dialog-modal>
+    </form>
 
     <!-- Delete Domain Confirmation Modal -->
     <x-jet-confirmation-modal wire:model.defer="showingDeleteModal">

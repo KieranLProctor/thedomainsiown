@@ -1,13 +1,3 @@
-@props([
-'label',
-'for',
-'error' => false,
-'helpText' => false,
-'inline' => false,
-'paddingless' => false,
-'borderless' => false,
-])
-
 @if($inline)
     <div>
         <label for="{{ $for }}" class="block text-sm font-medium leading-5 text-gray-700">{{ $label }}</label>
