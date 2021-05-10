@@ -159,7 +159,7 @@
                         <x-jet-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button
-                                    class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                                     <span class="sr-only">{{ __('View Notifications') }}</span>
                                     <x-tabler-bell class="h-6 w-6"/>
                                 </button>

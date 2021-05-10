@@ -15,11 +15,11 @@
                 <div class="w-1/4">
                     <x-input.text wire:model="search" placeholder="Search..."/>
                 </div>
-            </div>
-            <div class="float-right">
-                <x-jet-button>
-                    {{ __('Test') }}
-                </x-jet-button>
+                <div class="">
+                    <x-jet-button>
+                        {{ __('Add Domain') }}
+                    </x-jet-button>
+                </div>
             </div>
         </div>
 
@@ -29,32 +29,32 @@
                     <x-table.heading sortable
                                      wire:click="sortBy('name')"
                                      :direction="$sortField === 'name' ? $sortDirection : null">
-                        Name
+                        {{ __('Name') }}
                     </x-table.heading>
                     <x-table.heading sortable
                                      wire:click="sortBy('registrars.name')"
                                      :direction="$sortField === 'registrars.name' ? $sortDirection : null">
-                        Registrar
+                        {{ __('Registrar') }}
                     </x-table.heading>
                     <x-table.heading sortable
                                      wire:click="sortBy('registered_date')"
                                      :direction="$sortField === 'registered_date' ? $sortDirection : null">
-                        Registered Date
+                        {{ __('Registered Date') }}
                     </x-table.heading>
                     <x-table.heading sortable
                                      wire:click="sortBy('yearly_cost')"
                                      :direction="$sortField === 'yearly_cost' ? $sortDirection : null">
-                        Yearly Cost
+                        {{ __('Yearly Cost') }}
                     </x-table.heading>
                     <x-table.heading sortable
                                      wire:click="sortBy('will_autorenew')"
                                      :direction="$sortField === 'will_autorenew' ? $sortDirection : null">
-                        Auto-Renews?
+                        {{ __('Auto-Renews?') }}
                     </x-table.heading>
                     <x-table.heading sortable
                                      wire:click="sortBy('has_ssl_certificate')"
                                      :direction="$sortField === 'has_ssl_certificate' ? $sortDirection : null">
-                        SSL Certificate?
+                        {{ __('SSL Certificate?') }}
                     </x-table.heading>
                     <x-table.heading>Actions</x-table.heading>
                 </x-slot>
@@ -106,7 +106,7 @@
                         </x-table.row>
                     @empty
                         <x-table.row>
-                            <x-table.cell colspan="3">
+                            <x-table.cell colspan="7">
                                 <div class="flex justify-center items-center">
                                     <span
                                         class="text-xl text-gray-400 py-8 font-medium">{{ __('No domains found...') }}</span>
@@ -137,10 +137,10 @@
 
                 <!-- Registered Date -->
                 <x-input.group for="registered_date" label="{{ __('Registered Date') }}">
-                    <x-pikaday name="registered_date"
-                               class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                               format="YYYY-MM-DD"
-                               value="{{ $domain->registered_date }}"/>
+                    {{--                    <x-pikaday name="registered_date"--}}
+                    {{--                               class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"--}}
+                    {{--                               format="YYYY-MM-DD"--}}
+                    {{--                               value="{{ $domain->registered_date }}"/>--}}
                 </x-input.group>
 
                 <!-- Yearly Cost -->
