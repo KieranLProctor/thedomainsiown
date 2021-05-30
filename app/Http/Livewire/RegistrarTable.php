@@ -12,14 +12,27 @@ class RegistrarTable extends Component
 
     public Registrar $registrar;
     public string $search = '';
+    public string $sortField = 'name';
+    public string $sortDirection = 'asc';
     public int $perPage = 25;
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortDirection = 'asc';
+        }
+
+        $this->sortField = $field;
+    }
 
     public function render()
     {
-        $registrars = !empty($this->search) ? Registrar::where('name', 'like', '%' . $this->search . '%')->paginate($this->perPage) : Registrar::paginate($this->perPage);
-
         return view('livewire.registrar-table', [
-            'registrars' => $registrars
+            'registrars' => Registrar::search($this->search)
+                ->orderBy($this->sortField, $this->sortDirection)
+                ->paginate($this->perPage),
         ]);
     }
 }

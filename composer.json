@@ -20,7 +20,8 @@
         "laravel/sanctum": "^2.9",
         "laravel/tinker": "^2.6",
         "livewire/livewire": "^2.3.18",
-        "ryangjchandler/blade-tabler-icons": "^0.5.0"
+        "ryangjchandler/blade-tabler-icons": "^0.5.0",
+        "spatie/laravel-disable-floc": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5.13",

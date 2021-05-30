@@ -74,14 +74,14 @@
                         </x-jet-responsive-nav-link>
 
                         <x-jet-responsive-nav-link href="{{ route('domains.index') }}"
-                                                   :active="request()->routeIs('domains.index')">
+                                                   :active="request()->routeIs('domains.*')">
                             <x-heroicon-o-shopping-cart
                                 class="mr-4 h-6 w-6"/>
                             {{ __('Domains') }}
                         </x-jet-responsive-nav-link>
 
                         <x-jet-responsive-nav-link href="{{ route('registrars.index') }}"
-                                                   :active="request()->routeIs('registrars.index')">
+                                                   :active="request()->routeIs('registrars.*')">
                             <x-heroicon-o-location-marker
                                 class="mr-4 h-6 w-6"/>
                             {{ __('Registrars') }}
@@ -116,13 +116,13 @@
                         </x-jet-nav-link>
 
                         <x-jet-nav-link href="{{ route('domains.index') }}"
-                                        :active="request()->routeIs('domains.index')">
+                                        :active="request()->routeIs('domains.*')">
                             <x-heroicon-o-shopping-cart class="mr-3 h-6 w-6"/>
                             {{ __('Domains') }}
                         </x-jet-nav-link>
 
                         <x-jet-nav-link href="{{ route('registrars.index') }}"
-                                        :active="request()->routeIs('registrars.index')">
+                                        :active="request()->routeIs('registrars.*')">
                             <x-heroicon-o-location-marker class="mr-3 h-6 w-6"/>
                             {{ __('Registrars') }}
                         </x-jet-nav-link>
@@ -159,7 +159,7 @@
                         <x-jet-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button
-                                    class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                                     <span class="sr-only">{{ __('View Notifications') }}</span>
                                     <x-tabler-bell class="h-6 w-6"/>
                                 </button>

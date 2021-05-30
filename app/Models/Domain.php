@@ -52,44 +52,24 @@ class Domain extends Model
             : static::query()->where('name', 'like', '%'.$search.'%');
     }
 
-    /**
-     * Return the registrar the domain belongs to.
-     *
-     * @return BelongsTo
-     */
-    public function registrar()
+    public function registrar(): BelongsTo
     {
         return $this->belongsTo(Registrar::class);
     }
 
-    /**
-     * Return the tld the domain belongs to.
-     *
-     * @return BelongsTo
-     */
-    public function topLevelDomain()
+    public function topLevelDomain(): BelongsTo
     {
         return $this->belongsTo(TopLevelDomain::class);
     }
 
-    /**
-     * Return the formatted full domain.
-     *
-     * @return string
-     */
-    public function getFullDomainAttribute()
+    public function getFullDomainAttribute(): string
     {
         $hasSSLCertificate = $this->has_ssl_certificate ? 'https://' : 'http://';
 
         return "{$hasSSLCertificate}{$this->name}.{$this->topLevelDomain->name}";
     }
 
-    /**
-     * Return the formatted yearly cost.
-     *
-     * @return integer
-     */
-    public function getFormattedYearlyCostAttribute()
+    public function getFormattedYearlyCostAttribute(): int
     {
         return $this->yearly_cost / 100;
     }

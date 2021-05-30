@@ -1,24 +1,5 @@
 <div>
-    <!-- Delete Domain Confirmation Modal -->
-    <x-jet-dialog-modal wire:model="showingDomainDelete">
-        <x-slot name="title">
-            {{ __('Delete Domain') }}
-        </x-slot>
 
-        <x-slot name="content">
-            {{ __('Are you sure you want to delete this domain? Once the domain is deleted, all of its resources and data will be permanently deleted.') }}
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('showingDomainDelete')" wire:loading.attr="disabled">
-                {{ __('Nevermind') }}
-            </x-jet-secondary-button>
-
-            <x-jet-danger-button class="ml-2" wire:click="deleteDomain" wire:loading.attr="disabled">
-                {{ __('Delete Domain') }}
-            </x-jet-danger-button>
-        </x-slot>
-    </x-jet-dialog-modal>
 
     <div class="flex justify-between">
         <div class="flex flex-row space-x-2">
