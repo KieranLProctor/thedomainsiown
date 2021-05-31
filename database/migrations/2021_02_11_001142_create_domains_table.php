@@ -15,7 +15,6 @@ class CreateDomainsTable extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->foreignId('user_id')->constrained();
             $table->string('name');
             $table->foreignId('top_level_domain_id')->constrained();
