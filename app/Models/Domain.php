@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use Carbon\Traits\Date;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Domain extends Model
 {
@@ -25,7 +23,7 @@ class Domain extends Model
         'registered_date',
         'yearly_cost',
         'will_autorenew',
-        'has_ssl_certificate'
+        'has_ssl_certificate',
     ];
 
     /**

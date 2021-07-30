@@ -52,7 +52,7 @@ class DomainTable extends Component
     {
         return view('livewire.domain-table', [
             'domains' => Domain::search($this->search)
-                ->paginate($this->perPage)
+                ->paginate($this->perPage),
         ]);
     }
 }

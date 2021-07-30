@@ -13,7 +13,6 @@ class Cell extends Component
      */
     public function __construct()
     {
-        //
     }
 
     /**

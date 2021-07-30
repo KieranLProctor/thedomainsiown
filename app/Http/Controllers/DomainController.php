@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Domain;
 use App\Models\Registrar;
 use App\Models\TopLevelDomain;
-use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -20,18 +20,18 @@ class DomainController extends Controller
         return view('domains.index', ['domains' => $domains]);
     }
 
-    public function create(): Response
+    public function create(): View
     {
         $tlds = TopLevelDomain::all(['id', 'name']);
         $registrars = Registrar::all(['id', 'name']);
 
         return view('domains.create', [
             'tlds' => $tlds,
-            'registrars' => $registrars
+            'registrars' => $registrars,
         ]);
     }
 
-    public function store(Request $request): Response
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'name' => ['required'],
@@ -55,7 +55,7 @@ class DomainController extends Controller
         return redirect()->route('domains.index')->with('message', 'The domain has been successfully added!');
     }
 
-    public function show(Domain $domain): Response
+    public function show(Domain $domain): View
     {
         return view('domains.show', ['domain' => $domain]);
     }
@@ -68,11 +68,11 @@ class DomainController extends Controller
         return view('domains.edit', [
             'tlds' => $tlds,
             'registrars' => $registrars,
-            'domain' => $domain
+            'domain' => $domain,
         ]);
     }
 
-    public function update(Request $request, Domain $domain): Response
+    public function update(Request $request, Domain $domain): RedirectResponse
     {
         $validated = $request->validate([
             'name' => ['required'],
@@ -96,7 +96,7 @@ class DomainController extends Controller
         return redirect()->route('domains.index');
     }
 
-    public function destroy(Domain $domain): Response
+    public function destroy(Domain $domain): RedirectResponse
     {
         $domain->delete();
 

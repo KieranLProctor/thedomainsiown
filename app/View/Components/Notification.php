@@ -13,7 +13,6 @@ class Notification extends Component
      */
     public function __construct()
     {
-        //
     }
 
     /**

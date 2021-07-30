@@ -18,7 +18,7 @@
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
-                                        {{--                                        £{{ Auth::user()->totalItemsValue() }}--}}
+                                        £{{ number_format($user->total_monthly_expenditure, 2) }}
                                     </div>
                                 </dd>
                             </dl>
@@ -47,7 +47,7 @@
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
-                                        {{ Auth::user()->domains->count() }}
+                                        {{ $user->total_domains }}
                                     </div>
                                 </dd>
                             </dl>
@@ -76,7 +76,7 @@
                                 </dt>
                                 <dd>
                                     <div class="text-lg font-medium text-gray-900">
-                                        {{--                                        {{ Auth::user()->registrars->count() }}--}}
+                                        {{ $user->total_registrars }}
                                     </div>
                                 </dd>
                             </dl>
