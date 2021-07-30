@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -19,22 +18,12 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -42,31 +31,33 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
     protected $appends = [
         'profile_photo_url',
     ];
 
-    /**
-     * Return all of the domains the user owns.
-     *
-     * @return HasMany
-     */
-    public function domains()
+    public function domains(): HasMany
     {
         return $this->hasMany(Domain::class);
+    }
+
+    public function getTotalMonthlyExpenditureAttribute()
+    {
+        return Domain::where('user_id', '=', $this->id)->sum('yearly_cost') / 100 / 12;
+    }
+
+    public function getTotalDomainsAttribute()
+    {
+        return Domain::where('user_id', '=', $this->id)->count();
+    }
+
+    public function getTotalRegistrarsAttribute()
+    {
+        //Modal::('yourTable')->distinct()->count('yourAttribute')
+
+        return Domain::where('user_id', '=', $this->id)->distinct()->count('registrar_id');
     }
 }

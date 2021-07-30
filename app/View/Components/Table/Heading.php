@@ -16,7 +16,7 @@ class Heading extends Component
      */
     public function __construct($direction = '', $sortable = '')
     {
-        $this->direction = $direction != null ? $direction : '';
+        $this->direction = $direction !== null ? $direction : '';
         $this->sortable = $sortable;
     }
 

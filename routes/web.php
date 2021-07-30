@@ -3,6 +3,7 @@
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RegistrarController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('welcome');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::view('/dashboard', 'pages.dashboard')->name('pages.dashboard');
+    Route::get('/dashboard', function() {
+        return view('pages.dashboard', ['user' => Auth::user()]);
+    })->name('pages.dashboard');
+
+    //Route::view('/dashboard', 'pages.dashboard')->name('pages.dashboard');
 
     Route::get('/registrars', [RegistrarController::class, 'index'])->name('registrars.index');
     Route::get('/registrars/{registrar}', [RegistrarController::class, 'show'])->name('registrars.show');
@@ -27,11 +32,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::get('/notifications/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
 
-    Route::get('/domains', [DomainController::class, 'index'])->name('domains.index');
-    Route::get('/domains/create', [DomainController::class, 'create'])->name('domains.create');
-    Route::post('/domains', [DomainController::class, 'store'])->name('domains.store');
-    Route::get('/domains/{domain}', [DomainController::class, 'show'])->name('domains.show');
-    Route::get('/domains/{domain}/edit', [DomainController::class, 'edit'])->name('domains.edit');
-    Route::patch('/domains/{domain}', [DomainController::class, 'update'])->name('domains.update');
-    Route::delete('/domains/{domain}', [DomainController::class, 'destroy'])->name('domains.destroy');
+    Route::resource('/domains', DomainController::class);
 });
