@@ -4,6 +4,6 @@
     </x-slot>
 
     <div class="py-4">
-        <livewire:domain-table-new/>
+        <livewire:domain-table/>
     </div>
 </x-app-layout>

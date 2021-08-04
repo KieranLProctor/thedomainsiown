@@ -8,16 +8,18 @@ class Heading extends Component
 {
     public string $sortable;
     public string $direction;
+    public bool $multiColumn;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($direction = '', $sortable = '')
+    public function __construct($direction = '', $sortable = '', $multiColumn = false)
     {
         $this->direction = $direction !== null ? $direction : '';
         $this->sortable = $sortable;
+        $this->multiColumn = $multiColumn;
     }
 
     /**

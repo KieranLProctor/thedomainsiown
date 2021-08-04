@@ -24,8 +24,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('pages.dashboard', ['user' => Auth::user()]);
     })->name('pages.dashboard');
 
-    //Route::view('/dashboard', 'pages.dashboard')->name('pages.dashboard');
-
     Route::get('/registrars', [RegistrarController::class, 'index'])->name('registrars.index');
     Route::get('/registrars/{registrar}', [RegistrarController::class, 'show'])->name('registrars.show');
 

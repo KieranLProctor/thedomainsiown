@@ -7,15 +7,13 @@ use App\Models\Registrar;
 use App\Models\TopLevelDomain;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class DomainController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $domains = Auth::user()->domains;
+        $domains = $request->user()->domains;
 
         return view('domains.index', ['domains' => $domains]);
     }
@@ -42,7 +40,7 @@ class DomainController extends Controller
         ]);
 
         Domain::create([
-            'user_id' => Auth::id(),
+            'user_id' => $request->user()->id,
             'name' => $request['name'],
             'top_level_domain_id' => $request['top_level_domain_id'],
             'registrar_id' => $request['registrar_id'],
@@ -60,7 +58,7 @@ class DomainController extends Controller
         return view('domains.show', ['domain' => $domain]);
     }
 
-    public function edit(Domain $domain): Response
+    public function edit(Domain $domain): View
     {
         $tlds = TopLevelDomain::all(['id', 'name']);
         $registrars = Registrar::all(['id', 'name']);
@@ -83,7 +81,7 @@ class DomainController extends Controller
         ]);
 
         $domain->update([
-            'user_id' => Auth::id(),
+            'user_id' => $request->user()->id,
             'name' => $request['name'],
             'top_level_domain_id' => $request['top_level_domain_id'],
             'registrar_id' => $request['registrar_id'],
