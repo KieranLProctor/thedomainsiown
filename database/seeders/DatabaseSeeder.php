@@ -16,9 +16,10 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $this->call([
-            CountrySeeder::class,
-            RegistrarSeeder::class,
-            TopLevelDomainSeeder::class,
+            //CountrySeeder::class,
+            //RegistrarSeeder::class,
+            //TopLevelDomainSeeder::class,
+            DomainSeeder::class,
         ]);
     }
 }

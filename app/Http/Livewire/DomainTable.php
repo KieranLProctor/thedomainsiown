@@ -2,136 +2,85 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\DataTable\WithBulkActions;
-use App\Http\Livewire\DataTable\WithCachedRows;
-use App\Http\Livewire\DataTable\WithPerPagePagination;
-use App\Http\Livewire\DataTable\WithSorting;
+use App\Exports\DomainExport;
+use App\Exports\UserExport;
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Domain;
-use Livewire\Component;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
-class DomainTable extends Component
+class DomainTable extends DataTableComponent
 {
-    use WithPerPagePagination, WithSorting, WithBulkActions, WithCachedRows;
-
-    public Domain $domain;
-    public bool $showingCreateModal = false;
-    public bool $showingEditModal = false;
-    public bool $showingDeleteModal = false;
-    public $showFilters = false;
-    public $filters = [
-        'search' => '',
-        'name' => '',
-        'top_level_domain_id' => null,
-        'registrar_id' => null,
-        'registered_date' => null,
-        'yearly_cost' => null,
-        'will_autorenew' => null,
-        'has_ssl_certificate' => null,
+    public array $bulkActions = [
+        'importRecords' => 'Import',
+        'exportSelected' => 'Export',
+        'deleteSelected' => 'Delete',
     ];
 
-    protected $queryString = ['sorts'];
+    public bool $columnSelect = true;
 
-    protected $rules = [
-        'domain.name' => ['required'],
-        'domain.top_level_domain_id' => ['required'],
-        'domain.registrar_id' => ['required'],
-        'domain.registered_date' => ['required'],
-        'domain.yearly_cost' => ['required'],
-        'domain.will_autorenew' => ['required'],
-        'domain.has_ssl_certificate' => ['required'],
-    ];
+    protected string $pageName = 'domains';
+    protected string $tableName = 'domains';
 
-//    public function exportSelected()
-//    {
-//        return response()->streamDownload(function () {
-//            echo $this->selectedRowsQuery->toCsv();
-//        }, 'domains_' . date() . '.csv');
-//    }
-
-    public function updatedFilters()
+    public function exportSelected()
     {
-        $this->resetPage();
+        if ($this->selectedRowsQuery->count() > 0) {
+            return (new DomainExport($this->selectedRowsQuery))->download($this->tableName . '.xlsx');
+        }
     }
 
-    public function toggleShowFilters()
+    public function deleteSelected()
     {
-        $this->useCachedRows();
+        // Delete the rows.
+        if (count($this->selectedKeys)) {
+            // Add a confirmation box here.
+            Domain::destroy($this->selectedKeys);
 
-        $this->showFilters = !$this->showFilters;
+            $this->resetAll();
+        }
     }
 
-    public function showCreateModal()
+    public function getTableRowUrl($row): string
     {
-        $this->showingCreateModal = true;
+        return route('domains.show', $row);
     }
 
-    public function showEditModal(Domain $domain)
+    public function filters(): array
     {
-        $this->useCachedRows();
-
-        if ($this->domain->isNot($domain)) $this->domain = $domain;
-
-        $this->showingEditModal = true;
+        return [
+            'autoRenew' => Filter::make('Auto-Renews')
+                ->select([
+                    '' => 'Any',
+                    'yes' => 'Yes',
+                    'no' => 'No',
+                ]),
+            'ssl' => Filter::make('SSL Certificate')
+                ->select([
+                    '' => 'Any',
+                    'yes' => 'Yes',
+                    'no' => 'No',
+                ]),
+        ];
     }
 
-    public function showDeleteModal(Domain $domain)
+    public function columns(): array
     {
-        $this->domain = $domain;
-
-        $this->showingDeleteModal = true;
+        return [
+            Column::make('Name')
+                ->sortable()
+                ->searchable(),
+            Column::make('Registrar', 'registrar.name')->sortable(),
+            Column::make('Registered Date')->sortable(),
+            Column::make('Yearly Cost')->sortable(),
+            Column::make('Auto-Renews?', 'will_autorenew')->sortable(),
+            Column::make('SSL Certificate?', 'has_ssl_certificate')->sortable(),
+            Column::make('Actions'),
+        ];
     }
 
-    public function createDomain()
+    public function query(): Builder
     {
-        $this->validate();
-    }
-
-    public function saveDomain()
-    {
-        $this->validate();
-
-        $this->domain->save();
-
-        $this->showingEditModal = false;
-
-        $this->emit('refresh');
-    }
-
-    public function deleteDomain()
-    {
-        $this->domain->delete();
-
-        $this->showingDeleteModal = false;
-
-        $this->emit('refresh');
-    }
-
-    public function getRowsQueryProperty()
-    {
-        $query = Domain::query()
-            ->when($this->filters['name'], fn($query, $name) => $query->where('name', $name))
-            ->when($this->filters['search'], fn($query, $search) => $query->where('name', 'like', '%'.$search.'%'));
-
-        return $this->applySorting($query);
-    }
-
-    public function getRowsProperty()
-    {
-        return $this->cache(function () {
-            return $this->applyPagination($this->rowsQuery);
-        });
-    }
-
-    public function render()
-    {
-//        return view('livewire.domain-table', [
-//            'domains' => Domain::search($this->search)
-//                ->orderBy($this->sortField, $this->sortDirection)
-//                ->paginate($this->perPage),
-//        ]);
-
-        return view('livewire.domain-table', [
-            'domains' => $this->rows
-        ]);
+        return Domain::query();
     }
 }

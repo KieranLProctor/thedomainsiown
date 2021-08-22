@@ -2,37 +2,70 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\RegistrarExport;
 use App\Models\Registrar;
-use Livewire\Component;
-use Livewire\WithPagination;
+use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class RegistrarTable extends Component
+class RegistrarTable extends DataTableComponent
 {
-    use WithPagination;
+    public array $bulkActions = [
+        'exportSelected' => 'Export',
+    ];
 
-    public Registrar $registrar;
-    public string $search = '';
-    public string $sortField = 'name';
-    public string $sortDirection = 'asc';
-    public int $perPage = 25;
+    public bool $columnSelect = true;
 
-    public function sortBy($field)
+    protected string $pageName = 'registrars';
+    protected string $tableName = 'registrars';
+
+    public function exportSelected()
     {
-        if ($this->sortField === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortDirection = 'asc';
+        if ($this->selectedRowsQuery->count() > 0) {
+            return (new RegistrarExport($this->selectedRowsQuery))->download($this->tableName . '.xlsx');
         }
-
-        $this->sortField = $field;
     }
 
-    public function render()
+    public function deleteSelected()
     {
-        return view('livewire.registrar-table', [
-            'registrars' => Registrar::search($this->search)
-                ->orderBy($this->sortField, $this->sortDirection)
-                ->paginate($this->perPage),
-        ]);
+        // Delete the rows.
+        if (count($this->selectedKeys)) {
+            // Add a confirmation box here.
+            Registrar::destroy($this->selectedKeys);
+
+            $this->resetAll();
+        }
+    }
+
+    public function getTableRowUrl($row): string
+    {
+        return route('registrars.show', $row);
+    }
+
+    public function filters(): array
+    {
+        return [
+        ];
+    }
+
+    public function columns(): array
+    {
+        return [
+            Column::make('Name')
+                ->sortable()
+                ->searchable(),
+            Column::make('Website', 'website_url')->sortable(),
+            Column::make('Email')->sortable(),
+            Column::make('IANA Id', 'iana_id')->sortable(),
+            Column::make('RAA', 'raa')->sortable(),
+            Column::make('Phone')->sortable(),
+            Column::make('Country', 'countries.name')->sortable(),
+            Column::make('Actions'),
+        ];
+    }
+
+    public function query(): Builder
+    {
+        return Registrar::query();
     }
 }
