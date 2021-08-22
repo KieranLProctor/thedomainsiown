@@ -24,7 +24,8 @@
         "rappasoft/laravel-livewire-tables": "^1.12",
         "ryangjchandler/blade-tabler-icons": "^0.5.0",
         "spatie/laravel-disable-floc": "^1.0",
-        "staudenmeir/eloquent-has-many-deep": "^1.7"
+        "staudenmeir/eloquent-has-many-deep": "^1.7",
+        "yadahan/laravel-authentication-log": "^1.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
