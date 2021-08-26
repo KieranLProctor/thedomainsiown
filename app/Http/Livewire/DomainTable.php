@@ -26,7 +26,9 @@ class DomainTable extends DataTableComponent
     public function exportSelected()
     {
         if ($this->selectedRowsQuery->count() > 0) {
-            return (new DomainExport($this->selectedRowsQuery))->download($this->tableName . '.xlsx');
+            notify()->success('Laravel Notify is awesome!');
+
+            //return (new DomainExport($this->selectedKeys))->download($this->tableName . '.xlsx');
         }
     }
 
@@ -70,7 +72,9 @@ class DomainTable extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Registrar', 'registrar.name')->sortable(),
+            Column::make('Registrar', 'registrar.name')
+                ->sortable()
+                ->searchable(),
             Column::make('Registered Date')->sortable(),
             Column::make('Yearly Cost')->sortable(),
             Column::make('Auto-Renews?', 'will_autorenew')->sortable(),
