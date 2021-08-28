@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Exports\DomainExport;
 use App\Exports\UserExport;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -76,7 +77,11 @@ class DomainTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make('Registered Date')->sortable(),
-            Column::make('Yearly Cost')->sortable(),
+            Column::make('Yearly Cost')
+                ->sortable()
+                ->format(function ($value) {
+                    return '£' . number_format($value / 100, 2);
+                }),
             Column::make('Auto-Renews?', 'will_autorenew')->sortable(),
             Column::make('SSL Certificate?', 'has_ssl_certificate')->sortable(),
             Column::make('Actions'),
