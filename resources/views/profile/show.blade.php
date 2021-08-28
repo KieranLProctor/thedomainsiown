@@ -32,9 +32,11 @@
             @livewire('profile.logout-other-browser-sessions-form')
         </div>
 
-{{--        <div class="mt-10 sm:mt-0">--}}
-{{--            @livewire('profile.login-history')--}}
-{{--        </div>--}}
+        <x-jet-section-border/>
+
+        <div class="mt-10 sm:mt-0">
+            @livewire('profile.login-history')
+        </div>
 
         @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
             <x-jet-section-border/>
