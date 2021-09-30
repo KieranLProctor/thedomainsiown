@@ -76,14 +76,28 @@ class DomainTable extends DataTableComponent
             Column::make('Registrar', 'registrar.name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Registered Date')->sortable(),
+            Column::make('Registered Date')
+                ->sortable()
+                ->format(function ($value) {
+                    return date_format($value, 'jS M Y');
+                }),
             Column::make('Yearly Cost')
                 ->sortable()
                 ->format(function ($value) {
                     return '£' . number_format($value / 100, 2);
                 }),
-            Column::make('Auto-Renews?', 'will_autorenew')->sortable(),
-            Column::make('SSL Certificate?', 'has_ssl_certificate')->sortable(),
+            Column::make('Auto-Renews?', 'will_autorenew')
+                ->sortable()
+                ->format(function ($value) {
+                    return $value === 1 ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Yes</span>' : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">No</span>';
+                })
+                ->asHtml(),
+            Column::make('SSL Certificate?', 'has_ssl_certificate')
+                ->sortable()
+                ->format(function ($value) {
+                    return $value === 1 ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Yes</span>' : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">No</span>';
+                })
+                ->asHtml(),
             Column::make('Actions'),
         ];
     }
