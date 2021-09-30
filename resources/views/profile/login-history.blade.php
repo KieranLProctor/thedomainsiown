@@ -14,7 +14,7 @@
 
         <div class="mt-5 space-y-6">
             <!-- Login History -->
-            @foreach ($this->logins as $login)
+            @foreach ($this->logins->take(5) as $login)
                 <div class="flex items-center">
                     <div>
                         @if ($login->agent->isDesktop())

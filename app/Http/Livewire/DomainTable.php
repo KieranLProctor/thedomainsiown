@@ -26,11 +26,13 @@ class DomainTable extends DataTableComponent
 
     public function exportSelected()
     {
-        if ($this->selectedRowsQuery->count() > 0) {
-            notify()->success('Laravel Notify is awesome!');
-
-            //return (new DomainExport($this->selectedKeys))->download($this->tableName . '.xlsx');
+        if ($this->selectedRowsQuery()->count() == 0) {
+            return $this->notify()->success('ERROR');
         }
+
+        (new DomainExport($this->selectedKeys))->download($this->tableName . '.xlsx');
+
+        return notify()->success('Laravel Notify is awesome!');
     }
 
     public function deleteSelected()
@@ -76,14 +78,28 @@ class DomainTable extends DataTableComponent
             Column::make('Registrar', 'registrar.name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Registered Date')->sortable(),
+            Column::make('Registered Date')
+                ->sortable()
+                ->format(function ($value) {
+                    return date_format($value, 'jS M Y');
+                }),
             Column::make('Yearly Cost')
                 ->sortable()
                 ->format(function ($value) {
                     return '£' . number_format($value / 100, 2);
                 }),
-            Column::make('Auto-Renews?', 'will_autorenew')->sortable(),
-            Column::make('SSL Certificate?', 'has_ssl_certificate')->sortable(),
+            Column::make('Auto-Renews?', 'will_autorenew')
+                ->sortable()
+                ->format(function ($value) {
+                    return $value === 1 ? '<span class="badge badge-green">Yes</span>' : '<span class="badge badge-red">No</span>';
+                })
+                ->asHtml(),
+            Column::make('SSL Certificate?', 'has_ssl_certificate')
+                ->sortable()
+                ->format(function ($value) {
+                    return $value === 1 ? '<span class="badge badge-green">Yes</span>' : '<span class="badge badge-red">No</span>';
+                })
+                ->asHtml(),
             Column::make('Actions'),
         ];
     }
