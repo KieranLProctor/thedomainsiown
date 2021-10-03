@@ -54,12 +54,18 @@ class RegistrarTable extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Website', 'website_url')->sortable(),
-            Column::make('Email')->sortable(),
-            Column::make('IANA Id', 'iana_id')->sortable(),
-            Column::make('RAA', 'raa')->sortable(),
-            Column::make('Phone')->sortable(),
-            Column::make('Country', 'countries.name')->sortable(),
+            Column::make('Website', 'website_url')
+                ->sortable(),
+            Column::make('Email')
+                ->sortable(),
+            Column::make('IANA Id', 'iana_id')
+                ->sortable(),
+            Column::make('RAA', 'raa')
+                ->sortable(),
+            Column::make('Phone')
+                ->sortable(),
+            Column::make('Country', 'countries.name')
+                ->sortable(),
             Column::make('Actions'),
         ];
     }
