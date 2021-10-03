@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.6",
         "livewire/livewire": "^2.3.18",
         "maatwebsite/excel": "^3.1",
+        "mckenziearts/laravel-notify": "^2.2",
         "rappasoft/laravel-livewire-tables": "^1.12",
         "ryangjchandler/blade-tabler-icons": "^0.5.0",
         "spatie/laravel-disable-floc": "^1.0",

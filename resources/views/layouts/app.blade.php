@@ -19,6 +19,7 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     @bukStyles
+{{--    @notifyCss--}}
 </head>
 <body class="font-sans antialiased">
 <div class="h-screen flex overflow-hidden bg-gray-100"
@@ -98,7 +99,6 @@
     <!-- Static sidebar for desktop -->
     <div class="hidden md:flex md:flex-shrink-0">
         <div class="flex flex-col w-64">
-            <!-- Sidebar component, swap this element with another sidebar if you like -->
             <div class="flex flex-col h-0 flex-1">
                 <div class="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
                     <a href="{{ route('pages.dashboard') }}">
@@ -295,9 +295,11 @@
     </div>
 </div>
 @stack('modals')
+{{--<x:notify-messages />--}}
 
 @livewireScripts
 
 @bukScripts
+{{--@notifyJs--}}
 </body>
 </html>

@@ -15,6 +15,8 @@ class DomainController extends Controller
     {
         $domains = $request->user()->domains;
 
+        notify()->success('Welcome to Laravel Notify ⚡️');
+
         return view('domains.index', ['domains' => $domains]);
     }
 
